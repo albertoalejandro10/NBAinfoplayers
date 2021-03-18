@@ -1,32 +1,39 @@
 <template>
-    <form @submit.prevent="checkForm">
+    <div>
+        <h1 class="text-sm-center">Ingreso de usuario</h1>
+        <form @submit.prevent="checkForm">
 
-        <p v-if="errors.length">
-            <b>Por favor, corrije los siguientes errores: </b>
-            <ul>
-                <li v-for="error in errors" :key="error"> {{ error }}</li>
-            </ul>
-        </p>
-        <div class="form-group">
-            <label for="">Usuario:</label>
-            <input type="text" class="form-control" v-model="username" placeholder="Usuario" />
-        </div>
+            <p v-if="errors.length">
+                <b>Por favor, corrije los siguientes errores: </b>
+                <ul>
+                    <li v-for="error in errors" :key="error"> {{ error }}</li>
+                </ul>
+            </p>
+            <div class="form-group">
+                <label for="">Usuario:</label>
+                <input type="text" class="form-control" v-model="username" placeholder="Usuario" />
+            </div>
 
-        <div class="form-group">
-            <label> Contraseña: </label>
-            <input type="password" class="form-control" v-model="password" placeholder="Contraseña">
-        </div>
+            <div class="form-group">
+                <label> Contraseña: </label>
+                <input type="password" class="form-control" v-model="password" placeholder="Contraseña">
+            </div>
 
-        <label for="checkbox"> No se puede iniciar sesion si el usuario no acepta las politicas de privacidad </label>
-        <input type="checkbox" class="form-check-label" v-model="checked">
+            <label for="checkbox"> No se puede iniciar sesion si el usuario no acepta las <a class="text-primary">politicas de privacidad   </a>
+            <input type="checkbox" class="form-check-label" v-model="checked">
+            </label>
+            
+            <div class="text-center">
+                <button class="btn btn-primary" :disabled="!checked" @click="sendToDashboard()">Ingresar</button>
+            </div>
 
-        <button class="btn btn-primary btn-block" :disabled="!checked"><a class="text-warning" href="/Table">Ingresar</a></button>
-
-    </form>
+        </form>
+    </div>
     
 </template>
 
 <script>
+import router from '@/router';
 
 export default {
     name: 'Login',
@@ -39,6 +46,9 @@ export default {
         }
     },
     methods: {
+        sendToDashboard(){
+            router.push("Dashboard")
+        },
         checkForm:function(e) {
             this.errors = [];
             if(!this.username){

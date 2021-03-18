@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Nav />
     <div class="auth-wrapper">
       <div class="auth-inner">
         <router-view />
@@ -11,13 +10,9 @@
 </template>
 
 <script>
-import Nav from './components/Nav.vue'
 
 export default {
   name: 'App',
-  components: {
-    Nav,
-  }
 }
 </script>
 
@@ -61,7 +56,6 @@ export default {
     }
 
     .auth-inner {
-        width: 450px;
         margin: auto;
         background: white;
         box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.4);
